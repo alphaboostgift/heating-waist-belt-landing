@@ -313,8 +313,14 @@
             <p>If you're not satisfied with the results, we'll refund your money with no questions asked!</p>
         </div>
     </section>
-    <!-- Instead of loading the EmailJS SDK, we will call the EmailJS REST API directly from JavaScript. -->
-    <script>
+    <!-- Load EmailJS SDK from jsDelivr and initialize with your public key -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: 'Ilv99zFBZbyK82dEI'
+            });
+        })();
         // Global order function - works with onclick
         window.submitOrder = function() {
             // Get form values
@@ -382,7 +388,7 @@
                 total: totalPrice,
                 timestamp: new Date().toISOString()
             });
-            // Prepare order details to send via the EmailJS REST API
+            // Prepare order details to send via EmailJS service
             const templateParams = {
                 name: name,
                 phone: phone,
@@ -392,36 +398,17 @@
                 quantity: quantityNum,
                 total: totalPrice.toFixed(2)
             };
-            // Compose the payload for EmailJS REST API
-            const payload = {
-                service_id: 'service_9los91i',
-                template_id: 'template_52wmcin',
-                user_id: 'Ilv99zFBZbyK82dEI',
-                template_params: templateParams
-            };
-            // Send the email using fetch to avoid relying on external scripts
-            fetch('https://api.emailjs.com/api/v1.0/email/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    console.log('Email sent successfully via EmailJS REST API');
+            // Send the email using the EmailJS SDK
+            emailjs.send('service_9los91i', 'template_52wmcin', templateParams)
+                .then(function() {
+                    console.log('Email sent successfully via EmailJS');
                     // Redirect to PayPal for payment only after email is sent
                     window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RCL8MT9BHYZRS', '_blank');
-                } else {
-                    return response.text().then(function(text) {
-                        throw new Error(text);
-                    });
-                }
-            })
-            .catch(function(error) {
-                console.error('Error sending email via EmailJS REST API:', error);
-                alert('Имаше проблем при изпращането на поръчката. Моля, опитайте отново.');
-            });
+                })
+                .catch(function(error) {
+                    console.error('Error sending email via EmailJS:', error);
+                    alert('Имаше проблем при изпращането на поръчката. Моля, опитайте отново.');
+                });
         };
         // Smooth scrolling for hero CTA button
         document.addEventListener('DOMContentLoaded', function() {
