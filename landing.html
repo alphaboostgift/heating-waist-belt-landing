@@ -257,8 +257,12 @@
     <!-- Order Section -->
     <section class="order-section" id="order">
         <div class="container">
-            <!-- The form does not submit via action; data is sent via JavaScript to FormSubmit -->
-            <form class="order-form" id="orderForm" onsubmit="return false;">
+            <!-- The form posts to FormSubmit to send order details via email and then redirects to PayPal -->
+            <form class="order-form" id="orderForm" action="https://formsubmit.co/iliyadfov84@gmail.com" method="POST">
+                <!-- Hidden fields for FormSubmit: email subject, PayPal redirect, disable captcha -->
+                <input type="hidden" name="_subject" value="Нова поръчка – PainFree Belt">
+                <input type="hidden" name="_next" value="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RCL8MT9BHYZRS">
+                <input type="hidden" name="_captcha" value="false">
                 <h2>🎯 Order Now!</h2>
                 <div class="price-section">
                     <div class="current-price">$29.95</div>
@@ -293,7 +297,7 @@
                     </select>
                 </div>
                 <div style="text-align: center; margin: 30px 0;">
-                    <button type="button" onclick="submitOrder()" style="background-color:#ffc439;color:#111;padding:20px 40px;border-radius:10px;border:none;font-weight:bold;font-size:1.3rem;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
+                    <button type="submit" style="background-color:#ffc439;color:#111;padding:20px 40px;border-radius:10px;border:none;font-weight:bold;font-size:1.3rem;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
                         🛒 ORDER NOW - $29.95
                     </button>
                     <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
@@ -313,104 +317,8 @@
             <p>If you're not satisfied with the results, we'll refund your money with no questions asked!</p>
         </div>
     </section>
-    <!-- Load EmailJS SDK from jsDelivr and initialize with your public key -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Smooth scrolling for the hero call-to-action button -->
     <script type="text/javascript">
-        (function() {
-            emailjs.init({
-                publicKey: 'Ilv99zFBZbyK82dEI'
-            });
-        })();
-        // Global order function - works with onclick
-        window.submitOrder = function() {
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const city = document.getElementById('city').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const quantity = document.getElementById('quantity').value;
-            // Validate required fields one by one
-            if (!name) {
-                alert('Please enter your full name!');
-                document.getElementById('name').focus();
-                return;
-            }
-            if (!phone) {
-                alert('Please enter your phone number!');
-                document.getElementById('phone').focus();
-                return;
-            }
-            if (!email) {
-                alert('Please enter your email!');
-                document.getElementById('email').focus();
-                return;
-            }
-            if (!city) {
-                alert('Please enter your city!');
-                document.getElementById('city').focus();
-                return;
-            }
-            if (!address) {
-                alert('Please enter your shipping address!');
-                document.getElementById('address').focus();
-                return;
-            }
-            // Calculate total price based on quantity
-            const quantityNum = parseInt(quantity);
-            let totalPrice;
-            switch(quantityNum) {
-                case 1: totalPrice = 29.95; break;
-                case 2: totalPrice = 54.95; break;
-                case 3: totalPrice = 79.95; break;
-                default: totalPrice = 29.95;
-            }
-            // Show order confirmation
-            const orderDetails = 'ORDER CONFIRMED!\n\n' +
-                'Name: ' + name + '\n' +
-                'Phone: ' + phone + '\n' +
-                'Email: ' + email + '\n' +
-                'Address: ' + address + ', ' + city + '\n' +
-                'Color: Lotus root pink\n' +
-                'Quantity: ' + quantity + ' pcs.\n' +
-                'Total: $' + totalPrice.toFixed(2) + '\n\n' +
-                'Redirecting to PayPal for payment...';
-            alert(orderDetails);
-            // Log order data for tracking (check browser console)
-            console.log('Order Data:', {
-                name: name,
-                phone: phone,
-                email: email,
-                city: city,
-                address: address,
-                color: 'Lotus root pink',
-                quantity: quantityNum,
-                total: totalPrice,
-                timestamp: new Date().toISOString()
-            });
-            // Prepare order details to send via EmailJS service
-            const templateParams = {
-                name: name,
-                phone: phone,
-                email: email,
-                city: city,
-                address: address,
-                quantity: quantityNum,
-                total: totalPrice.toFixed(2)
-            };
-            // Send the email using the EmailJS SDK
-            emailjs.send('service_9los91i', 'template_52wmcin', templateParams)
-                .then(function() {
-                    console.log('Email sent successfully via EmailJS');
-                    // Redirect to PayPal for payment only after email is sent
-                    window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RCL8MT9BHYZRS', '_blank');
-                })
-                .catch(function(error) {
-                    console.error('Error sending email via EmailJS:', error);
-                    alert('Имаше проблем при изпращането на поръчката. Моля, опитайте отново.');
-                });
-        };
-        // Smooth scrolling for hero CTA button
         document.addEventListener('DOMContentLoaded', function() {
             const ctaButton = document.querySelector('.cta-button');
             if (ctaButton) {
