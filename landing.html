@@ -257,7 +257,8 @@
     <!-- Order Section -->
     <section class="order-section" id="order">
         <div class="container">
-            <form class="order-form" id="orderForm">
+            <!-- The form does not submit via action; data is sent via JavaScript to FormSubmit -->
+            <form class="order-form" id="orderForm" onsubmit="return false;">
                 <h2>🎯 Order Now!</h2>
                 <div class="price-section">
                     <div class="current-price">$29.95</div>
@@ -380,8 +381,31 @@
                 total: totalPrice,
                 timestamp: new Date().toISOString()
             });
-            // Redirect to PayPal for payment
-            window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RCL8MT9BHYZRS', '_blank');
+            // Send order details to the store owner's email via FormSubmit
+            const formData = new FormData();
+            formData.append('Name', name);
+            formData.append('Phone', phone);
+            formData.append('Email', email);
+            formData.append('City', city);
+            formData.append('Address', address);
+            formData.append('Quantity', quantityNum);
+            formData.append('Color', 'Lotus root pink');
+            formData.append('Total', '$' + totalPrice.toFixed(2));
+            // Replace the email below with your own. FormSubmit hides your address from customers.
+            fetch('https://formsubmit.co/iliyadafov84@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                console.log('Order form submitted successfully');
+            }).catch(error => {
+                console.error('Error submitting order form:', error);
+            }).finally(() => {
+                // Redirect to PayPal for payment once the email submission is attempted
+                window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RCL8MT9BHYZRS', '_blank');
+            });
         };
         // Smooth scrolling for hero CTA button
         document.addEventListener('DOMContentLoaded', function() {
