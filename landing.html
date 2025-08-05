@@ -1,185 +1,400 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Отоплителен колан за облекчаване на менструални болки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PainFree Belt - End Period Pain Without Pills</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
         }
-
-        /* Герой секция с градиентен фон от генерираното изображение */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
         .hero {
-            color: #fff;
+            background: linear-gradient(135deg, #ff7675, #fd79a8);
+            color: white;
+            padding: 60px 0;
             text-align: center;
-            padding: 80px 20px;
-            background-image: url('warm-bg.png');
-            background-size: cover;
-            background-position: center;
         }
-
         .hero h1 {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section h2 {
-            color: #444;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .feature {
-            flex: 0 0 48%;
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            padding: 20px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-
-        .feature h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #e74c3c;
-        }
-
-        .feature p {
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .spec-table th, .spec-table td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-        }
-
-        .spec-table th {
-            background: #f4f4f4;
+            font-size: 3.5rem;
             font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
-        .cta {
-            text-align: center;
-            margin: 40px 0;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
-
-        .cta a {
-            background: #e74c3c;
-            color: #fff;
-            padding: 14px 28px;
+        .hero .cta-button {
+            background: #00b894;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
             text-decoration: none;
-            font-size: 18px;
-            border-radius: 4px;
-            transition: background 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-
-        .cta a:hover {
-            background: #c0392b;
+        .hero .cta-button:hover {
+            background: #00a085;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
-
-        @media (max-width: 700px) {
-            .feature {
-                flex: 0 0 100%;
-            }
+        .problems {
+            background: white;
+            padding: 60px 0;
+        }
+        .problems h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #e17055;
+            margin-bottom: 40px;
+        }
+        .problem-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .problem-item {
+            background: #fff5f5;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #ff7675;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .problem-item h3 {
+            color: #e17055;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .solution {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 60px 0;
+        }
+        .solution h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .product-image {
+            text-align: center;
+        }
+        .product-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .benefits {
+            list-style: none;
+        }
+        .benefits li {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .benefits li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+        .order-section {
+            background: white;
+            padding: 60px 0;
+        }
+        .order-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .order-form h2 {
+            text-align: center;
+            color: #e17055;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #74b9ff;
+        }
+        .required {
+            color: #e17055;
+        }
+        .price-section {
+            background: #00b894;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .guarantee {
+            background: #dff0d8;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .guarantee h3 {
+            color: #00b894;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
             .hero h1 {
-                font-size: 32px;
+                font-size: 2.5rem;
             }
-            .hero p {
-                font-size: 18px;
+            .product-showcase {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Кажете сбогом на менструалните болки</h1>
-        <p>Насладете се на спокойствие с нашия загряващ колан за талия – нежна топлина, която облекчава крампите и подобрява комфорта ви по време на цикъл.</p>
-    </div>
-
-    <div class="section">
-        <h2>Защо да изберете нашия колан?</h2>
-        <div class="features">
-            <div class="feature">
-                <h3>Незабавно облекчение</h3>
-                <p>Регулируемите температурни режими (45°C, 55°C и 65°C) осигуряват бързо затопляне, което помага да се намали менструалната болка.</p>
-            </div>
-            <div class="feature">
-                <h3>Комфорт и удобство</h3>
-                <p>Меките материали и ергономичният дизайн приляга на корема и кръста, така че можете да се движите свободно през целия ден.</p>
-            </div>
-            <div class="feature">
-                <h3>USB захранване</h3>
-                <p>Свържете колана към power bank, компютър или адаптер – използвайте го у дома, в офиса или в движение.</p>
-            </div>
-            <div class="feature">
-                <h3>Безопасна инфрачервена терапия</h3>
-                <p>Дълговълновата инфрачервена топлина подпомага кръвообращението и намалява напрежението в мускулите, като предлага приятно успокояване.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🚫 NO MORE PILLS!</h1>
+            <p class="subtitle">Natural menstrual pain relief in seconds</p>
+            <a href="#order" class="cta-button">Order Now - Only $29.95!</a>
+        </div>
+    </section>
+    <!-- Problems Section -->
+    <section class="problems">
+        <div class="container">
+            <h2>Do these struggles sound familiar? 😰</h2>
+            <div class="problem-list">
+                <div class="problem-item">
+                    <h3>💊 Endless Pills</h3>
+                    <p>Every month you torture yourself with painkillers that harm your stomach and liver</p>
+                </div>
+                <div class="problem-item">
+                    <h3>😣 Unbearable Pain</h3>
+                    <p>Menstrual cramps stop you from work, sports, and living your normal life</p>
+                </div>
+                <div class="problem-item">
+                    <h3>🛏️ Cancelled Plans</h3>
+                    <p>You have to cancel meetings and activities because of unbearable pain</p>
+                </div>
+                <div class="problem-item">
+                    <h3>😴 Sleepless Nights</h3>
+                    <p>Pain doesn't let you sleep peacefully and you wake up exhausted</p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="section">
-        <h2>Спецификации</h2>
-        <table class="spec-table">
-            <tr>
-                <th>Материали</th>
-                <td>Плат, пластмаса</td>
-            </tr>
-            <tr>
-                <th>Номинално напрежение</th>
-                <td>5V</td>
-            </tr>
-            <tr>
-                <th>Температурни режими</th>
-                <td>45°C / 55°C / 65°C</td>
-            </tr>
-            <tr>
-                <th>Размер</th>
-                <td>18,5 × 8,5 × 11 cm</td>
-            </tr>
-            <tr>
-                <th>Комплект</th>
-                <td>Колан за затопляне, USB кабел, ръководство</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="cta">
-        <p style="font-size:24px;color:#e74c3c;font-weight:bold;margin-bottom:20px;">Само $29.95</p>
-        <!-- Заменете линка долу с точния адрес на продукта във вашия магазин -->
-        <a href="https://alphabooststore.com" target="_blank">ПОРЪЧАЙ СЕГА</a>
-    </div>
+    </section>
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2>🌟 Here's the solution - PainFree Belt!</h2>
+            <div class="product-showcase">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=400&fit=crop" alt="PainFree Belt">
+                </div>
+                <div>
+                    <ul class="benefits">
+                        <li><strong>Instant relief</strong> - Heat works in seconds</li>
+                        <li><strong>No pills needed</strong> - 100% natural solution with no side effects</li>
+                        <li><strong>USB powered</strong> - Use it anywhere - at home, office, in your car</li>
+                        <li><strong>Soft material</strong> - Gentle on skin, comfortable to wear</li>
+                        <li><strong>Adjustable temperature</strong> - 3 heat levels to match your needs</li>
+                        <li><strong>Compact size</strong> - Discreet and easy to carry</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Order Section -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <form class="order-form" id="orderForm">
+                <h2>🎯 Order Now!</h2>
+                <div class="price-section">
+                    <div class="current-price">$29.95</div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Shipping Address <span class="required">*</span></label>
+                    <input type="text" id="address" name="address" placeholder="Street, Number..." required>
+                </div>
+                <input type="hidden" id="color" name="color" value="Lotus root pink">
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <select id="quantity" name="quantity">
+                        <option value="1">1 pc. - $29.95</option>
+                        <option value="2">2 pcs. - $54.95 (Save $5!)</option>
+                        <option value="3">3 pcs. - $79.95 (Save $10!)</option>
+                    </select>
+                </div>
+                <div style="text-align: center; margin: 30px 0;">
+                    <button type="button" onclick="submitOrder()" style="background-color:#ffc439;color:#111;padding:20px 40px;border-radius:10px;border:none;font-weight:bold;font-size:1.3rem;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
+                        🛒 ORDER NOW - $29.95
+                    </button>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                        Secure payment with PayPal • 30-day money back guarantee
+                    </p>
+                </div>
+                <p style="text-align: center; color: #999; font-size: 0.85rem; font-style: italic;">
+                    Please fill out your shipping details above, then click "ORDER NOW" to pay with PayPal
+                </p>
+            </form>
+        </div>
+    </section>
+    <!-- Guarantee Section -->
+    <section class="guarantee">
+        <div class="container">
+            <h3>💯 30-Day Money Back Guarantee!</h3>
+            <p>If you're not satisfied with the results, we'll refund your money with no questions asked!</p>
+        </div>
+    </section>
+    <script>
+        // Global order function - works with onclick
+        window.submitOrder = function() {
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const quantity = document.getElementById('quantity').value;
+            // Validate required fields one by one
+            if (!name) {
+                alert('Please enter your full name!');
+                document.getElementById('name').focus();
+                return;
+            }
+            if (!phone) {
+                alert('Please enter your phone number!');
+                document.getElementById('phone').focus();
+                return;
+            }
+            if (!email) {
+                alert('Please enter your email!');
+                document.getElementById('email').focus();
+                return;
+            }
+            if (!city) {
+                alert('Please enter your city!');
+                document.getElementById('city').focus();
+                return;
+            }
+            if (!address) {
+                alert('Please enter your shipping address!');
+                document.getElementById('address').focus();
+                return;
+            }
+            // Calculate total price based on quantity
+            const quantityNum = parseInt(quantity);
+            let totalPrice;
+            switch(quantityNum) {
+                case 1: totalPrice = 29.95; break;
+                case 2: totalPrice = 54.95; break;
+                case 3: totalPrice = 79.95; break;
+                default: totalPrice = 29.95;
+            }
+            // Show order confirmation
+            const orderDetails = 'ORDER CONFIRMED!\n\n' +
+                'Name: ' + name + '\n' +
+                'Phone: ' + phone + '\n' +
+                'Email: ' + email + '\n' +
+                'Address: ' + address + ', ' + city + '\n' +
+                'Color: Lotus root pink\n' +
+                'Quantity: ' + quantity + ' pcs.\n' +
+                'Total: $' + totalPrice.toFixed(2) + '\n\n' +
+                'Redirecting to PayPal for payment...';
+            alert(orderDetails);
+            // Log order data for tracking (check browser console)
+            console.log('Order Data:', {
+                name: name,
+                phone: phone,
+                email: email,
+                city: city,
+                address: address,
+                color: 'Lotus root pink',
+                quantity: quantityNum,
+                total: totalPrice,
+                timestamp: new Date().toISOString()
+            });
+            // Redirect to PayPal for payment
+            window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RCL8MT9BHYZRS', '_blank');
+        };
+        // Smooth scrolling for hero CTA button
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector('#order').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
